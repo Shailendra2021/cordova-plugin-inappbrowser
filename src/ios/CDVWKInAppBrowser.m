@@ -1143,8 +1143,9 @@ BOOL isExiting = FALSE;
 - (void)webView:(WKWebView *)theWebView didFinishNavigation:(WKNavigation *)navigation
 {
     // update url, stop spinner, update back/forward
-    
-    self.addressLabel.text = [self.currentURL absoluteString];
+    if (self.currentURL != nil) {
+        self.addressLabel.text = [self.currentURL absoluteString];
+    }
     self.backButton.enabled = theWebView.canGoBack;
     self.forwardButton.enabled = theWebView.canGoForward;
     theWebView.scrollView.contentInset = UIEdgeInsetsZero;
